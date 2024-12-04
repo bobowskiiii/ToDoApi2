@@ -16,14 +16,14 @@ Postman Testing:
 - All API endpoints have been tested for correctness and reliability using Postman.
   
 API Endpoints:
-1.GET /api/todos - Retrieve all to-do items.
-2.GET /api/todos/{id} - Retrieve a specific to-do item by ID.
-3.GET /todos/incoming: Retrieve ToDo items with expiry dates in the next days.
-4.POST /api/todos - Create a new to-do item.
-5.POST /todos/{id}/done: Mark a specific ToDo as completed.
-6.PUT /api/todos/{id} - Update an existing to-do item by ID.
-7.PUT /todos/{id}/percent: Update the completion percentage of a specific ToDo item.
-8.DELETE /api/todos/{id} - Delete a to-do item by ID.
+- GET /api/todos - Retrieve all to-do items.
+- GET /api/todos/{id} - Retrieve a specific to-do item by ID.
+- GET /todos/incoming: Retrieve ToDo items with expiry dates in the next days.
+- POST /api/todos - Create a new to-do item.
+- POST /todos/{id}/done: Mark a specific ToDo as completed.
+- PUT /api/todos/{id} - Update an existing to-do item by ID.
+- PUT /todos/{id}/percent: Update the completion percentage of a specific ToDo item.
+- DELETE /api/todos/{id} - Delete a to-do item by ID.
   
 Technologies Used:
 Framework: ASP.NET Core 6+
