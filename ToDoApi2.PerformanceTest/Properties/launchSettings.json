@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ToDoApi2.PerformanceTest": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
