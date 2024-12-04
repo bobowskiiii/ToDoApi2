@@ -4,14 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using ToDoApi2.Data;
 using ToDoApi2.Models;
 
-// Initialize the WebApplication builder
 var builder = WebApplication.CreateBuilder(args);
 
 // Configure the database context to use MySQL with the specified version and connection string
 builder.Services.AddDbContext<ToDoDbContext>(options =>
     options.UseMySql(
         builder.Configuration.GetConnectionString("DefaultConnection"),
-        new MySqlServerVersion(new Version(8, 0, 31)) // Specify the MySQL server version
+        new MySqlServerVersion(new Version(8, 0, 31)) 
     ));
 
 var app = builder.Build();
@@ -39,15 +38,12 @@ app.MapPost("/todos", async (ToDo todo, ToDoDbContext db) =>
     // Validate the provided ToDo item
     if (!IsValid(todo))
     {
-        // Return a bad request with validation errors
         return Results.BadRequest("Invalid data: " + string.Join(", ", GetValidationErrors(todo)));
     }
 
     // Add the ToDo item to the database and save changes
     db.ToDos.Add(todo);
     await db.SaveChangesAsync();
-
-    // Return a Created response with the location of the new resource
     return Results.Created($"/todos/{todo.Id}", todo);
 });
 
@@ -57,13 +53,12 @@ app.MapPut("/todos/{id}", async (int id, ToDo updatedToDo, ToDoDbContext db) =>
     // Validate the updated ToDo item
     if (!IsValid(updatedToDo))
     {
-        // Return a bad request with validation errors
         return Results.BadRequest("Invalid data: " + string.Join(", ", GetValidationErrors(updatedToDo)));
     }
 
     // Find the existing ToDo item by ID
     var todo = await db.ToDos.FindAsync(id);
-    if (todo is null) return Results.NotFound(); // Return NotFound if the item does not exist
+    if (todo is null) return Results.NotFound(); 
 
     // Update the fields of the ToDo item
     todo.Title = updatedToDo.Title;
@@ -74,7 +69,7 @@ app.MapPut("/todos/{id}", async (int id, ToDo updatedToDo, ToDoDbContext db) =>
 
     // Save changes to the database
     await db.SaveChangesAsync();
-    return Results.NoContent(); // Return NoContent indicating a successful update
+    return Results.NoContent(); 
 });
 
 // Define a POST endpoint to mark a ToDo item as "done" by its ID
@@ -82,30 +77,28 @@ app.MapPost("/todos/{id}/done", async (int id, ToDoDbContext db) =>
 {
     // Find the ToDo item by ID
     var todo = await db.ToDos.FindAsync(id);
-    if (todo is null) return Results.NotFound(); // Return NotFound if the item does not exist
-
+    if (todo is null) return Results.NotFound(); 
+    
     // Mark the item as complete
     todo.IsComplete = true;
 
     // Save changes to the database
     await db.SaveChangesAsync();
-    return Results.Ok(todo); // Return the updated ToDo item
+    return Results.Ok(todo); 
 });
 
 // Define a DELETE endpoint to remove a ToDo item by its ID
 app.MapDelete("/todos/{id}", async (int id, ToDoDbContext db) =>
 {
-    // Find the ToDo item by ID
     var todo = await db.ToDos.FindAsync(id);
-    if (todo is null) return Results.NotFound(); // Return NotFound if the item does not exist
+    if (todo is null) return Results.NotFound(); 
 
     // Remove the ToDo item from the database and save changes
     db.ToDos.Remove(todo);
     await db.SaveChangesAsync();
-    return Results.NoContent(); // Return NoContent indicating a successful deletion
+    return Results.NoContent();
 });
 
-// Run the application
 app.Run();
 
 // Helper method to validate a ToDo item using data annotations
@@ -122,7 +115,5 @@ List<string> GetValidationErrors(ToDo todo)
     var validationResult = new List<ValidationResult>();
     var context = new ValidationContext(todo);
     Validator.TryValidateObject(todo, context, validationResult, true);
-
-    // Return the list of error messages
     return validationResult.Select(x => x.ErrorMessage).ToList();
 }
