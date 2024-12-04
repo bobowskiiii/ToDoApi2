@@ -1,6 +1,18 @@
 # ToDoApi - README
 ToDoApi2 is a RESTful API built with ASP.NET Core and .NET 8.0.0 for managing to-do tasks. The project includes functionality for creating, reading, updating, and deleting (CRUD) tasks.
 
+
+Running the Application:
+- Configure the connection string in appsettings.json.
+- Restore dependencies using dotnet restore.
+- Run the application using dotnet run.
+  
+To set up the database, execute the provided setup.sql script in your MySQL server:
+1. Open a MySQL client (e.g., MySQL Workbench).
+2. Open the setup.sql file.
+3. Execute the script to create the database and populate the tables.
+4. Ensure the connection string in appsettings.json matches your MySQL credentials.
+   
 Key Features:
 - CRUD Operations: Endpoints for managing to-do items, including fields like title, description, completion status, expiration date, and completion percentage.
   
@@ -30,7 +42,3 @@ Framework: ASP.NET Core 6+
 Database: Entity Framework Core (In-Memory Database)
 Testing Tools: xUnit, FluentAssertions, Postman, BenchmarkDotNet
 
-Running the Application:
-- Configure the connection string in appsettings.json.
-- Restore dependencies using dotnet restore.
-- Run the application using dotnet run.
