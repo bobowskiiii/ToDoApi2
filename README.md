@@ -1,5 +1,5 @@
 # ToDoApi - README
-ToDoApi2 is a RESTful API built with ASP.NET Core for managing to-do tasks. The project includes functionality for creating, reading, updating, and deleting (CRUD) tasks, making it a versatile backend solution for task management applications.
+ToDoApi2 is a RESTful API built with ASP.NET Core and .NET 8.0.0 for managing to-do tasks. The project includes functionality for creating, reading, updating, and deleting (CRUD) tasks.
 
 Key Features:
 - CRUD Operations: Endpoints for managing to-do items, including fields like title, description, completion status, expiration date, and completion percentage.
